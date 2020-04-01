@@ -129,7 +129,7 @@ def validate(ticket):
         if "cas:attributes" in xml_from_dict:
             attributes = xml_from_dict["cas:attributes"]
 
-            if "cas:memberOf" in attributes:
+            if "cas:memberOf" in attributes and isinstance(attributes["cas:memberOf"], str):
                 attributes["cas:memberOf"] = attributes["cas:memberOf"].lstrip('[').rstrip(']').split(',')
                 for group_number in range(0, len(attributes['cas:memberOf'])):
                     attributes['cas:memberOf'][group_number] = attributes['cas:memberOf'][group_number].lstrip(' ').rstrip(' ')
